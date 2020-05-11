@@ -1,15 +1,12 @@
 const {Router} = require('express');
 const router = Router();
 
-const {sendMessage} = require('../twilio/send-sms');
+const {indexController, postMessage, receiveMessage} = require('../controllers/index.controller');
 
-router.get('/', (req, res) => {
-    res.render('index');
-})
+router.get('/', indexController);
 
-router.post('/send-sms', async(req, res) => {
-    const response = await sendMessage(req.body.message, req.body.phone);
-    console.log(response.sid);
-    res.send('received');
-})
+router.post('/send-sms', postMessage);
+
+router.post('/get-sms', receiveMessage);
+
 module.exports = router;

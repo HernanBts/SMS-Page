@@ -12,4 +12,20 @@
             </button>
         </form>
     </div>
+    <div class="col-md-8">
+        {{#if messages}}
+        <li class="list-group" style="height: 70vh; overflow-y: auto;" id="messages">
+            {{#each messages}}
+            <div class="list-group-item list-group-item-action list-group-item-default">
+                <p>{{Body}}</p>
+                <span>{{To}}</span>
+                <span>{{From}}</span>
+                <span> -> {{timeago createdAt}}</span>
+            </div>
+            {{/each}}
+        </li>
+        {{else}}
+        <p>No Messages.</p>
+        {{/if}}
+    </div>
 </div>
